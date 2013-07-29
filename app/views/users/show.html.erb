@@ -1,0 +1,11 @@
+<%= @user.username  %>'s Friends
+<br><br>
+
+<% @allF.each do |a| %>
+
+  <%=User.find(a.friend_id).username %>
+  <%= link_to "Destroy Friend", end_friendships_path(:id => a.id)  %> 
+<% end %>
+<br><br>
+
+<%= link_to "Home", root_url %>

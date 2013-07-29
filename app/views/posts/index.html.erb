@@ -1,4 +1,11 @@
 <div id="content">
+
+  <% if logged_in?%>
+    <p><%= link_to "Make Friends", users_path %></p>
+
+    <%= link_to "My Friends", { :controller => "users", :action => "show", :id => current_user } %>
+  <% end %>
+  <p><%= render :partial => "users/login" %></p>
   <%= render :partial => "message_form" %>
   <div id= "posts">
     <%= render :partial => @posts %>

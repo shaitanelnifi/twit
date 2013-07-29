@@ -8,7 +8,9 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.create(:message => params[:message])
+    #@post = Post.create(:message => params[:message])
+    @post = Post.new
+    @post.message = params[:message]
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_path }

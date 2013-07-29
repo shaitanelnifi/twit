@@ -1,5 +1,22 @@
 Twitter::Application.routes.draw do
-resources :posts
+  
+  root 'posts#index'
+  
+  match 'user/edit' => 'users#edit', :as => :edit_current_user, via: 'get'
+  match 'signup' => 'users#new', :as => :signup, via: 'get'
+
+  match 'logout' => 'sessions#destroy', :as => :logout, via: 'get'
+
+  match 'login' => 'sessions#new', :as => :login, via: 'get'
+
+  match "/begin_friendships(:friend_id)" => "friendships#create", :as => :begin_friendships, via: 'get'
+  match "/end_friendships(:friend_id)" => "friendships#destroy", :as => :end_friendships, via: 'get'
+
+  
+  resources :friendships
+  resources :sessions
+  resources :users
+  resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
